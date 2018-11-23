@@ -33,7 +33,7 @@ namespace BTI7252_SmartHomeCommander.Controllers
             catch (System.Exception ex)
             {
                 // todo -> Log exception
-                return StatusCode(500);
+                return StatusCode(500, ex.Message);
             }
 
             return Ok();

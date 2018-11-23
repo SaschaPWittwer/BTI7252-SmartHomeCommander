@@ -20,9 +20,7 @@ namespace BTI7252_SmartHomeCommander.Mqtt
             if (_client.IsConnected)
                 return;
 
-            var conResult = await _client.ConnectAsync(_options);
-            if (!conResult.IsSessionPresent)
-                throw new MqttCommunicationException("Could not establish connection to mqtt broker");
+            await _client.ConnectAsync(_options);
         }
     }
 }

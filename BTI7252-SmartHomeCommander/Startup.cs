@@ -13,17 +13,18 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MQTTnet;
 using MQTTnet.Client;
+using MQTTnet.Serializer;
 
 namespace BTI7252_SmartHomeCommander
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -38,11 +39,14 @@ namespace BTI7252_SmartHomeCommander
             var factory = new MqttFactory();
             var mqttClient = factory.CreateMqttClient();
             services.AddSingleton<IMqttClient>(mqttClient);
+            var mqttOptions = new MqttClientOptionsBuilder()
+                .WithClientId($"CommandApi-{Guid.NewGuid()}")
+                .WithCommunicationTimeout(TimeSpan.FromSeconds(Configuration.GetValue<int>("Mqtt:Timeout")))
+                .WithKeepAlivePeriod(TimeSpan.FromSeconds(100))
+                .WithCredentials(Configuration.GetValue<string>("Mqtt:User"), Configuration.GetValue<string>("Mqtt:Password"))
+                .WithTcpServer(Configuration.GetValue<string>("Mqtt:Host"), 1883)
+                .Build();
 
-            var mqttOptions = new MqttClientOptions
-            {
-                // todo -> Create options
-            };
             services.AddSingleton<IMqttClientOptions>(mqttOptions);
 
             services.AddSwaggerDocument();

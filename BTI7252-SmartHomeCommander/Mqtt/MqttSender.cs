@@ -24,9 +24,9 @@ namespace BTI7252_SmartHomeCommander.Mqtt
 
             var message = new MqttApplicationMessage
             {
-                QualityOfServiceLevel = MqttQualityOfServiceLevel.ExactlyOnce,
+                QualityOfServiceLevel = MqttQualityOfServiceLevel.AtLeastOnce,
                 Payload = Encoding.UTF8.GetBytes(command.Payload),
-                Topic = "" // todo -> From where?!
+                Topic = "helloWorld" // todo -> From where?!
             };
 
             await _client.PublishAsync(message);

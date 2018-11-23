@@ -44,6 +44,8 @@ namespace BTI7252_SmartHomeCommander
                 // todo -> Create options
             };
             services.AddSingleton<IMqttClientOptions>(mqttOptions);
+
+            services.AddSwaggerDocument();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,6 +59,10 @@ namespace BTI7252_SmartHomeCommander
             {
                 app.UseHsts();
             }
+
+            // Register the Swagger generator and the Swagger UI middlewares
+            app.UseSwagger();
+            app.UseSwaggerUi3();
 
             app.UseHttpsRedirection();
             app.UseMvc();

@@ -1,8 +1,7 @@
-POST http://localhost:5001/api/Command HTTP/1.1
+POST http://localhost:5001/nexhome/Event/e3077028-afbd-4cf6-8f6d-d7c2125b1499/running HTTP/1.1
 Content-Type: application/json
 
 {
-	"Receiver": "37b7aecb-5821-4a29-a5d9-f4277a0c0141",
 	"Payload": "{ text: 'MyText', someOtherStuff: 'Lol' }"
 }
 

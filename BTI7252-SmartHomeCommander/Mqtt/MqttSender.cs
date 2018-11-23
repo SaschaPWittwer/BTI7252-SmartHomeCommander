@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using System.Threading.Tasks;
 using BTI7252_SmartHomeCommander.Models;
@@ -18,7 +19,7 @@ namespace BTI7252_SmartHomeCommander.Mqtt
             _conManager = conManager;
         }
 
-        public async Task SendMessage(Command command)
+        public async Task SendMessage(Command command, Guid thingId, string eventName)
         {
             await _conManager.EstablichConnection();
 
@@ -26,7 +27,7 @@ namespace BTI7252_SmartHomeCommander.Mqtt
             {
                 QualityOfServiceLevel = MqttQualityOfServiceLevel.AtLeastOnce,
                 Payload = Encoding.UTF8.GetBytes(command.Payload),
-                Topic = "helloWorld" // todo -> From where?!
+                Topic = $"nexhome/event/{thingId.ToString("D")}/{eventName}" 
             };
 
             await _client.PublishAsync(message);

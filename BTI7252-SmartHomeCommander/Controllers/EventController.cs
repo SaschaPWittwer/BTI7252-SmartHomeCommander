@@ -1,18 +1,18 @@
-using System.Threading.Tasks;
 using BTI7252_SmartHomeCommander.Models;
 using BTI7252_SmartHomeCommander.Mqtt;
 using Microsoft.AspNetCore.Mvc;
-using MQTTnet.Client;
+using System;
+using System.Threading.Tasks;
 
 namespace BTI7252_SmartHomeCommander.Controllers
 {
-    [Route("/api/[controller]")]
+    [Route("/nexhome/[controller]/{thingId}/{eventName}")]
     [ApiController]
-    public class CommandController : ControllerBase
+    public class EventController : ControllerBase
     {
         private IMqttSender _mqttSender;
 
-        public CommandController(IMqttSender mqttSender)
+        public EventController(IMqttSender mqttSender)
         {
             _mqttSender = mqttSender;
         }
@@ -21,14 +21,14 @@ namespace BTI7252_SmartHomeCommander.Controllers
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
-        public async Task<ActionResult> PostAsync(Command command)
+        public async Task<ActionResult> PostAsync([FromBody] Command command, Guid thingId, string eventName)
         {
             if (!command.IsValid())
                 return BadRequest();
 
             try
             {
-                await _mqttSender.SendMessage(command);
+                await _mqttSender.SendMessage(command, thingId, eventName);
             }
             catch (System.Exception ex)
             {
@@ -38,7 +38,5 @@ namespace BTI7252_SmartHomeCommander.Controllers
 
             return Ok();
         }
-
-
     }
 }

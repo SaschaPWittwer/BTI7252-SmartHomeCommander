@@ -1,15 +1,20 @@
 version: '3'
 services:
-  backend:
+  commandApi:
     build:
       context: .
       dockerfile: Dockerfile
     image: bti7252/commander:latest
     environment:
-     NexHome_Mqtt__Host: "broker.lab.nexhome.ch"
-     NexHome_Mqtt__User: "*"
-     NexHome_Mqtt__Password: "*"
+     NexHome_Mqtt__Host: "mqtt"
+     NexHome_Mqtt__User: ""
+     NexHome_Mqtt__Password: ""
      NexHome_Mqtt__QoS: ""
      NexHome_Mqtt__Timeout: 30
     ports: 
      - "5001:80"
+  mqtt:
+    image: eclipse-mosquitto
+    ports:
+     - "1883:1883"
+     - "9001:9001"

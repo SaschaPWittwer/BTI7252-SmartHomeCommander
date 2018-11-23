@@ -25,5 +25,12 @@ namespace BTI7252_SmartHomeCommander.Controllers
         {
             return Ok();
         }
+
+        [HttpGet]
+        public async Task<ActionResult> Get()
+        {
+            string result = "B========D";
+            return Ok(result);
+        }
     }
 }

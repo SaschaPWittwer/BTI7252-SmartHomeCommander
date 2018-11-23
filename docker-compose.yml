@@ -1,0 +1,9 @@
+version: '3'
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: bti7252/commander:latest
+    ports: 
+     - "5001:80"

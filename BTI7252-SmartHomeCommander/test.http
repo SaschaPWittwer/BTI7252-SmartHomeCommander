@@ -7,3 +7,13 @@ Content-Type: application/json
 }
 
 ###
+
+POST https://localhost:5001/api/things HTTP/1.1
+Content-Type: application/json
+
+{
+	"Receiver": "37b7aecb-5821-4a29-a5d9-f4277a0c0141",
+	"Payload": "{ text: 'MyText', someOtherStuff: 'Lol' }"
+}
+
+###

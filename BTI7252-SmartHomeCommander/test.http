@@ -27,3 +27,38 @@ Content-Type: application/json
 }
 
 ###
+POST https://localhost:5001/api/things/register HTTP/1.1
+Content-Type: application/json
+
+{
+    "thingId" : "38d61641-1475-452f-8ccd-a74ed59f31ca",
+    "description": "Fridge in the kitchen",
+    "created": "2018-04-23T18:25:43.511Z",
+    "updated": "2018-04-27T18:25:43.511Z",
+    "data": [
+        {
+            "name": "temp",
+            "valueType": "double", 
+            "valueUnit": "celsius",
+        },
+        {
+            "name": "light",
+            "valueType": "boolean", 
+        },
+        {
+            "name": "running",
+            "valueType": "boolean", 
+        }
+    ],
+    "events": [
+        {
+            "name": "running",
+            "parameters": [
+                {
+                    "name": "value",
+                    "type": "boolean"
+                }
+            ]
+        }
+    ]
+}

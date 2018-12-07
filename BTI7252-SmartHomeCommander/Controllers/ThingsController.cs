@@ -1,34 +1,30 @@
-using System.Threading.Tasks;
-using BTI7252_SmartHomeCommander.Models;
 using BTI7252_SmartHomeCommander.Mqtt;
 using Microsoft.AspNetCore.Mvc;
-using MQTTnet.Client;
+using System;
+using System.Threading.Tasks;
 
 namespace BTI7252_SmartHomeCommander.Controllers
 {
     [Route("/api/[controller]")]
     [ApiController]
-    public class CommandController : ControllerBase
+    public class ThingsController : ControllerBase
     {
         private IMqttSender _mqttSender;
 
-        public CommandController(IMqttSender mqttSender)
+        public ThingsController(IMqttSender mqttSender)
         {
             _mqttSender = mqttSender;
         }
 
-        [HttpPost]
+        [HttpPut("{thingId}/{eventName}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
-        public async Task<ActionResult> PostAsync(Command command)
+        public async Task<ActionResult> PutAsync(Guid thingId, string eventName, [FromBody] string payload)
         {
-            if (!command.IsValid())
-                return BadRequest();
-
             try
             {
-                await _mqttSender.SendMessage(command);
+                await _mqttSender.SendMessage(payload, thingId, eventName);
             }
             catch (System.Exception ex)
             {
@@ -38,7 +34,5 @@ namespace BTI7252_SmartHomeCommander.Controllers
 
             return Ok();
         }
-
-
     }
 }

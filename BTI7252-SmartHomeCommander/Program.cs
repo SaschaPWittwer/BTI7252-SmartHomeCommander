@@ -24,6 +24,7 @@ namespace BTI7252_SmartHomeCommander
                     config.SetBasePath(Directory.GetCurrentDirectory());
                     config.AddEnvironmentVariables("NexHome_");
                 })
+	            .UseUrls("https://localhost:5001")
                 .UseStartup<Startup>();
     }
 }

@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.28010.2048
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BTI7252-SmartHomeCommander", "BTI7252-SmartHomeCommander\BTI7252-SmartHomeCommander.csproj", "{94AC4B81-D7F8-4BF6-98CE-F9D61DCB13A8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BTI7252.Models", "BTI7252.Models\BTI7252.Models.csproj", "{A5C9E2C4-FFB6-4A04-B428-DEAB05950F07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BTI7252.DataAccess", "BTI7252.Repositories\BTI7252.DataAccess.csproj", "{85FD844E-E0B9-4DCA-97D9-070A04F2D59E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{94AC4B81-D7F8-4BF6-98CE-F9D61DCB13A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94AC4B81-D7F8-4BF6-98CE-F9D61DCB13A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94AC4B81-D7F8-4BF6-98CE-F9D61DCB13A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5C9E2C4-FFB6-4A04-B428-DEAB05950F07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5C9E2C4-FFB6-4A04-B428-DEAB05950F07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5C9E2C4-FFB6-4A04-B428-DEAB05950F07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5C9E2C4-FFB6-4A04-B428-DEAB05950F07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85FD844E-E0B9-4DCA-97D9-070A04F2D59E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85FD844E-E0B9-4DCA-97D9-070A04F2D59E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85FD844E-E0B9-4DCA-97D9-070A04F2D59E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85FD844E-E0B9-4DCA-97D9-070A04F2D59E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

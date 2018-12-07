@@ -15,4 +15,9 @@
     <PackageReference Include="NSwag.AspNetCore" Version="12.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BTI7252.Models\BTI7252.Models.csproj" />
+    <ProjectReference Include="..\BTI7252.Repositories\BTI7252.DataAccess.csproj" />
+  </ItemGroup>
+
 </Project>

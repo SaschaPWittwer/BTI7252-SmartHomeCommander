@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BTI7252_SmartHomeCommander.Controllers
 {
-    [Route("/nexhome/[controller]/{thingId}/{eventName}")]
+    [Route("/nexhome/[controller]")]
     [ApiController]
     public class EventController : ControllerBase
     {
@@ -17,18 +17,19 @@ namespace BTI7252_SmartHomeCommander.Controllers
             _mqttSender = mqttSender;
         }
 
-        [HttpPost]
+        [HttpPost("{thingId}/{eventName}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
-        public async Task<ActionResult> PostAsync([FromBody] Command command, Guid thingId, string eventName)
+        public async Task<ActionResult> PostAsync(string thingId, string eventName, [FromBody] Command command)
         {
+            
             if (!command.IsValid())
-                return BadRequest();
+                return Ok($"{thingId} {eventName}");
 
             try
             {
-                await _mqttSender.SendMessage(command, thingId, eventName);
+                await _mqttSender.SendMessage(command, new Guid(thingId), eventName);
             }
             catch (System.Exception ex)
             {
@@ -36,7 +37,7 @@ namespace BTI7252_SmartHomeCommander.Controllers
                 return StatusCode(500, ex.Message);
             }
 
-            return Ok();
+            return Ok($"{thingId} {eventName}");
         }
     }
 }

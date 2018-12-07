@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace BTI7252_SmartHomeCommander.Controllers
 {
-    [Route("/[controller]")]
+    [Route("/api/[controller]")]
     [ApiController]
     public class ThingsController : ControllerBase
     {
@@ -20,7 +20,7 @@ namespace BTI7252_SmartHomeCommander.Controllers
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
-        public async Task<ActionResult> PostAsync(Guid thingId, string eventName, [FromBody] string payload)
+        public async Task<ActionResult> PutAsync(Guid thingId, string eventName, [FromBody] string payload)
         {
             try
             {

@@ -2,7 +2,7 @@ POST https://localhost:5001/things/e3077028-afbd-4cf6-8f6d-d7c2125b1499/running/
 Content-Type: application/json
 
 {
-	{ text: 'MyText', someOtherStuff: 'Lol' }
+	"{ text: 'MyText', someOtherStuff: 'Lol' }"
 }
 
 ###

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BTI7252.DataAccess;
 using BTI7252_SmartHomeCommander.Mqtt;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -34,6 +35,12 @@ namespace BTI7252_SmartHomeCommander
             // Bootstrap shit
             services.AddTransient<IMqttSender, MqttSender>();
             services.AddTransient<IMqttConnectionManager, MqttConnectionManager>();
+            services.AddTransient<ICouchBucketManager, CouchBucketManager>();
+	        services.AddTransient<ICouchConnectionManager, CouchConnectionManager>(c =>
+		        new CouchConnectionManager(Configuration.GetValue<Uri>("Couchdb:Url"),
+			        Configuration.GetValue<string>("Couchdb:Username"),
+			        Configuration.GetValue<string>("Couchdb:Password")));
+            services.AddTransient<ICouchRepository, CouchRepository>();
 
             // Create a new MQTT client.
             var factory = new MqttFactory();

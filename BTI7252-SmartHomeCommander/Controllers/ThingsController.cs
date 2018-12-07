@@ -16,7 +16,7 @@ namespace BTI7252_SmartHomeCommander.Controllers
             _mqttSender = mqttSender;
         }
 
-        [HttpPost("{thingId}/{eventName}")]
+        [HttpPut("{thingId}/{eventName}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]

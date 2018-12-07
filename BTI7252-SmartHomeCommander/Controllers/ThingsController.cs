@@ -18,20 +18,6 @@ namespace BTI7252_SmartHomeCommander.Controllers
 			_couchRepositroy = couchRepositroy;
 		}
 
-		/// <summary>
-		///     Registers a new sensors metadata
-		/// </summary>
-		/// <param name="data">the sensor meta data</param>
-		/// <returns><code>Ok</code> if the sensor could be registered successfully, <code>Failure</code> otherwise</returns>
-		[HttpPost]
-		[ProducesResponseType(200)]
-		[ProducesResponseType(400)]
-		[ProducesResponseType(500)]
-		public async Task<ActionResult> PostAsync(ThingMetadata data)
-		{
-			return Ok();
-		}
-
 		[HttpPost]
 		[Route("Register")]
 		public async Task<ActionResult> Register(ThingModel model)

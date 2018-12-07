@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using BTI7252.Models;
@@ -36,6 +37,22 @@ namespace BTI7252.DataAccess
 			}
 
 			return ValidationResult.Success;
+		}
+
+		public Task<IEnumerable<ThingModel>> GetAll()
+		{
+			using (var bucket = _bucketManager.Open("bucketboy"))
+			{
+				// TODO: GetAll ThingModels (maybe paged....)
+			}
+		}
+
+		public ThingModel Get(Guid id)
+		{
+			using (var bucket = _bucketManager.Open("bucketboy"))
+			{
+				return bucket.Get<ThingModel>(id.ToString()).Value;
+			}
 		}
 	}
 }

@@ -9,7 +9,7 @@ namespace BTI7252.DataAccess
 	public interface ICouchRepository
 	{
 		Task<ValidationResult> Save(ThingModel model);
-		Task<IEnumerable<ThingModel>> GetAll();
+		IEnumerable<ThingModel> GetAll();
 		ThingModel Get(Guid id);
 	}
 }

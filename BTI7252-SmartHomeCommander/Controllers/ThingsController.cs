@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Threading.Tasks;
 using BTI7252.DataAccess;
 using BTI7252.Models;
@@ -42,7 +41,7 @@ namespace BTI7252_SmartHomeCommander.Controllers
 		}
 
 		[HttpGet]
-		public async IEnumerable<ThingModel> GetAll()
+		public IEnumerable<ThingModel> GetAll()
 		{
 			return _couchRepositroy.GetAll();
 		}
@@ -51,15 +50,18 @@ namespace BTI7252_SmartHomeCommander.Controllers
 		[Route("Register")]
 		public async Task<ActionResult> Register(ThingModel model)
 		{
-			if (model == null) return BadRequest();
+			if (model == null)
+				return BadRequest();
 
 			var result = await _couchRepositroy.Save(model);
-			if (result != null && !string.IsNullOrEmpty(result.ErrorMessage)) return BadRequest(result.ErrorMessage);
+			if (result != null && !string.IsNullOrEmpty(result.ErrorMessage))
+				return BadRequest(result.ErrorMessage);
 
 			return Ok(model);
 		}
 
 		[HttpGet]
+		[Route("easteregg")]
 		public async Task<ActionResult> Get()
 		{
 			var result = "B========D";

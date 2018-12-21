@@ -1,4 +1,6 @@
-﻿namespace BTI7252.Models
+﻿using System;
+
+namespace BTI7252.Models
 {
 	public class ReadModel
 	{

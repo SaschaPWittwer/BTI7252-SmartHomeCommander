@@ -36,10 +36,10 @@ namespace BTI7252_SmartHomeCommander
             services.AddTransient<IMqttSender, MqttSender>();
             services.AddTransient<IMqttConnectionManager, MqttConnectionManager>();
             services.AddTransient<ICouchBucketManager, CouchBucketManager>();
-	        services.AddTransient<ICouchConnectionManager, CouchConnectionManager>(c =>
-		        new CouchConnectionManager(Configuration.GetValue<Uri>("Couchdb:Url"),
-			        Configuration.GetValue<string>("Couchdb:Username"),
-			        Configuration.GetValue<string>("Couchdb:Password")));
+            services.AddTransient<ICouchConnectionManager, CouchConnectionManager>(c =>
+                new CouchConnectionManager(Configuration.GetValue<Uri>("Couchdb:Url"),
+                    Configuration.GetValue<string>("Couchdb:Username"),
+                    Configuration.GetValue<string>("Couchdb:Password")));
             services.AddTransient<ICouchRepository, CouchRepository>();
 
             // Create a new MQTT client.
@@ -66,16 +66,11 @@ namespace BTI7252_SmartHomeCommander
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseHsts();
-            }
 
             // Register the Swagger generator and the Swagger UI middlewares
             app.UseSwagger();
             app.UseSwaggerUi3();
 
-            app.UseHttpsRedirection();
             app.UseMvc();
         }
     }
